@@ -1,0 +1,21 @@
+name: deploy
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: "Entorno de despliegue"
+                required: true
+                type: choice
+                options:
+                    - dev
+                    - test
+                    - pre
+                    - pro
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        environment: ${{inputs.environment}}
+        steps:
+            - run: echo "Desplegando en ${{inputs.environment}}"
